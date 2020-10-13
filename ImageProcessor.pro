@@ -16,11 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    binarizator.cpp \
+    brightnesschanger.cpp \
+    colorconverter.cpp \
+    contraster.cpp \
+    gammanizator.cpp \
+    imageprocessor.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    negativetrashhold.cpp \
+    pseudocolorizer.cpp \
+    utility.cpp
 
 HEADERS += \
-    mainwindow.h
+    binarizator.h \
+    brightnesschanger.h \
+    colorconverter.h \
+    contraster.h \
+    gammanizator.h \
+    imageprocessor.h \
+    mainwindow.h \
+    negativetrashhold.h \
+    pseudocolorizer.h \
+    utility.h
 
 FORMS += \
     mainwindow.ui
