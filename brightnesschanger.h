@@ -1,7 +1,6 @@
 #ifndef BRIGHTNESSCHANGER_H
 #define BRIGHTNESSCHANGER_H
-#include <QApplication>
-#include <QImage>
+#include "utility.h"
 
 class BrightnessChanger {
 public:

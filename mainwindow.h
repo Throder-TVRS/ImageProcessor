@@ -46,6 +46,36 @@ private slots:
     void on_pseudo_box_stateChanged(int arg1);
     void on_gamma_box_2_valueChanged(double arg1);
 
+    void on_quantization_slider_valueChanged(int value);
+
+    void on_quantation_box_stateChanged(int arg1);
+
+    void on_pseudo_first_color_clicked();
+
+    void on_pseudo_second_color_clicked();
+
+    void on_pseudo_third_color_clicked();
+
+    void on_pseudo_fourth_color_clicked();
+
+    void on_solarization_box_stateChanged(int arg1);
+
+    void on_lowpass_h1_button_clicked();
+
+    void on_lowpass_h2_button_clicked();
+
+    void on_lowpass_h3_button_clicked();
+
+    void on_lowpass_reset_clicked();
+
+    void on_highpass_h1_button_clicked();
+
+    void on_highpass_h2_button_clicked();
+
+    void on_highpass_h3_button_clicked();
+
+    void on_highpass_reset_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

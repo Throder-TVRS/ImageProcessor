@@ -27,7 +27,7 @@
      <item>
       <widget class="QTabWidget" name="operations_widget">
        <property name="currentIndex">
-        <number>5</number>
+        <number>10</number>
        </property>
        <widget class="QWidget" name="gray_scale_tab">
         <attribute name="title">
@@ -365,12 +365,107 @@
          <property name="singleStep">
           <double>0.050000000000000</double>
          </property>
+         <property name="value">
+          <double>1.000000000000000</double>
+         </property>
         </widget>
        </widget>
        <widget class="QWidget" name="quantization_tab">
         <attribute name="title">
          <string>Quantization</string>
         </attribute>
+        <widget class="QWidget" name="formLayoutWidget_7">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>291</width>
+           <height>231</height>
+          </rect>
+         </property>
+         <layout class="QFormLayout" name="formLayout_7">
+          <item row="0" column="0">
+           <widget class="QLCDNumber" name="quantation_display">
+            <property name="value" stdset="0">
+             <double>1.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSlider" name="quantization_slider">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>8</number>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="quantation_box">
+            <property name="text">
+             <string>On</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="solarization_tab">
+        <attribute name="title">
+         <string>Solarization</string>
+        </attribute>
+        <widget class="QWidget" name="formLayoutWidget_8">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>291</width>
+           <height>231</height>
+          </rect>
+         </property>
+         <layout class="QFormLayout" name="formLayout_8">
+          <item row="1" column="0">
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="solarization_box">
+            <property name="text">
+             <string>On</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
        <widget class="QWidget" name="pseudo_coloring_tab">
         <attribute name="title">
@@ -387,43 +482,97 @@
          </property>
          <layout class="QFormLayout" name="formLayout_6">
           <item row="0" column="0">
-           <widget class="QLCDNumber" name="pseudo_q1_display"/>
-          </item>
-          <item row="0" column="1">
-           <widget class="QSlider" name="pseudo_q1_slider">
-            <property name="maximum">
-             <number>255</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+           <widget class="QLCDNumber" name="pseudo_q1_display">
+            <property name="value" stdset="0">
+             <double>50.000000000000000</double>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLCDNumber" name="pseudo_q2_display"/>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QSlider" name="pseudo_q1_slider">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>50</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pseudo_first_color">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
-          <item row="2" column="0">
-           <widget class="QLCDNumber" name="pseudo_q3_display"/>
+          <item row="1" column="0">
+           <widget class="QLCDNumber" name="pseudo_q2_display">
+            <property name="value" stdset="0">
+             <double>127.000000000000000</double>
+            </property>
+           </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QSlider" name="pseudo_q2_slider">
-            <property name="maximum">
-             <number>255</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QSlider" name="pseudo_q2_slider">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>127</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pseudo_second_color">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLCDNumber" name="pseudo_q3_display">
+            <property name="value" stdset="0">
+             <double>200.000000000000000</double>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QSlider" name="pseudo_q3_slider">
-            <property name="maximum">
-             <number>255</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QSlider" name="pseudo_q3_slider">
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>200</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pseudo_third_color">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="3" column="0">
            <widget class="QCheckBox" name="pseudo_box">
@@ -431,6 +580,30 @@
              <string>On</string>
             </property>
            </widget>
+          </item>
+          <item row="3" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pseudo_fourth_color">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="4" column="0">
            <spacer name="verticalSpacer_5">
@@ -448,15 +621,173 @@
          </layout>
         </widget>
        </widget>
-       <widget class="QWidget" name="tab_2">
+       <widget class="QWidget" name="lowpass_tab">
         <attribute name="title">
-         <string>Страница</string>
+         <string>Lowpass filter</string>
         </attribute>
+        <widget class="QWidget" name="gridLayoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>291</width>
+           <height>231</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="lowpass_h1_button">
+            <property name="text">
+             <string>H1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="lowpass_reset">
+            <property name="text">
+             <string>Reset</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <spacer name="verticalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="lowpass_h3_button">
+            <property name="text">
+             <string>H3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="lowpass_h2_button">
+            <property name="text">
+             <string>H2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
        </widget>
-       <widget class="QWidget" name="tab_3">
+       <widget class="QWidget" name="highpass_tab">
         <attribute name="title">
-         <string>Страница</string>
+         <string>Highpass filter</string>
         </attribute>
+        <widget class="QWidget" name="gridLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>291</width>
+           <height>231</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="highpass_h1_button">
+            <property name="text">
+             <string>H1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="highpass_reset">
+            <property name="text">
+             <string>Reset</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <spacer name="verticalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="highpass_h3_button">
+            <property name="text">
+             <string>H3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="highpass_h2_button">
+            <property name="text">
+             <string>H2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </widget>
      </item>

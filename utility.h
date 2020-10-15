@@ -2,8 +2,15 @@
 #define UTILITY_H
 #include "mainwindow.h"
 #include <algorithm>
+#include <QApplication>
+#include <QString>
+#include <QFileDialog>
+#include <iostream>
+#include <cmath>
+#include <iostream>
 
 uint64_t uint64_round(uint64_t a, uint64_t b, uint64_t lim);
 QImage scale_image(const QImage& image, int width, int height);
+QImage expand_image(const QImage& image, int n);
 
 #endif // UTILITY_H

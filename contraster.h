@@ -1,10 +1,6 @@
 #ifndef CONTRASTER_H
 #define CONTRASTER_H
-#include <QApplication>
-#include <QImage>
 #include "utility.h"
-#include <algorithm>
-#include <iostream>
 
 class Contraster {
 public:

@@ -1,9 +1,5 @@
 #ifndef COLORCONVERTER_H
 #define COLORCONVERTER_H
-#include <QApplication>
-#include <QString>
-#include <QFileDialog>
-#include <iostream>
 #include "utility.h"
 
 enum MIXER_TYPE {

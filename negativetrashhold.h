@@ -1,7 +1,6 @@
 #ifndef NEGATIVETRASHHOLD_H
 #define NEGATIVETRASHHOLD_H
-#include <QApplication>
-#include <QImage>
+#include "utility.h"
 
 class NegativeTrashhold {
 public:

@@ -7,17 +7,25 @@ int main(int argc, char *argv[]) {
     ColorConverter converter;
     BrightnessChanger brightness_changer;
     NegativeTrashhold negative_trashhold;
-    Binarizator binarizator;
+    Binarizer binarizator;
     Contraster contraster;
-    Gammanizator gammanizator;
+    Gammanizer gammanizator;
     PseudoColorizer pseudo_colorizer;
+    Solarizer solarizer;
+    Quantizer quantizer;
+    LowPassFilter lowpass_filter;
+    HighPassFilter highpass_filter;
     ImageProcessor processor(&converter,
                              &brightness_changer,
                              &negative_trashhold,
                              &binarizator,
                              &contraster,
                              &gammanizator,
-                             &pseudo_colorizer);
+                             &pseudo_colorizer,
+                             &solarizer,
+                             &quantizer,
+                             &lowpass_filter,
+                             &highpass_filter);
     MainWindow w(nullptr, &processor);
     w.setFixedSize(w.size());
     w.setWindowTitle("Image processor");

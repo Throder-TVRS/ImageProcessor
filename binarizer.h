@@ -1,14 +1,13 @@
 #ifndef BINARIZATOR_H
 #define BINARIZATOR_H
-#include <QApplication>
-#include <QImage>
+#include "utility.h"
 
-class Binarizator {
+class Binarizer {
 public:
-    Binarizator();
+    Binarizer();
 
     bool _isOn = false;
-    uint64_t _trashhold = 0;
+    uint64_t _trashhold = 256;
 
     QImage binaryze(const QImage& image);
 };
