@@ -27,7 +27,7 @@
      <item>
       <widget class="QTabWidget" name="operations_widget">
        <property name="currentIndex">
-        <number>5</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="gray_scale_tab">
         <attribute name="title">
@@ -1001,7 +1001,7 @@
                <number>3</number>
               </property>
               <property name="maximum">
-               <number>100</number>
+               <number>15</number>
               </property>
               <property name="singleStep">
                <number>2</number>

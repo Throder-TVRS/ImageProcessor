@@ -15,7 +15,7 @@ void GaussianFilter::construct_filter() {
         second.resize(first.size() + 1);
         second[0] = 1;
         second[i] = 1;
-        for(int j = 1; j < i; j++)
+        for(uint64_t j = 1; j < i; j++)
             second[j] = first[j] + first[j - 1];
         first = second;
     }

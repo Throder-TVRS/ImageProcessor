@@ -10,10 +10,10 @@ QImage scale_image(const QImage& image, int width, int height) {
     QImage scaled_image;
     int image_width = image.width();
     int image_height = image.height();
-    if(image_width > width)
-        scaled_image = image.scaledToWidth(width);
-    if(image_height > height)
+    if(image_height >= image_width && image_height > height)
         scaled_image = image.scaledToHeight(height);
+    if(image_height < image_width && image_width > width)
+        scaled_image = image.scaledToWidth(width);
     if(scaled_image.isNull())
         scaled_image = image;
     return scaled_image;
