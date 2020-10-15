@@ -14,6 +14,7 @@
 #include "lowpassfilter.h"
 #include "highpassfilter.h"
 #include "medianfilter.h"
+#include "gaussianfilter.h"
 
 class ColorConverter;
 class BrightnessChanger;
@@ -27,6 +28,7 @@ class Quantizer;
 class LowPassFilter;
 class HighPassFilter;
 class MedianFilter;
+class GaussianFilter;
 
 enum Transformations {
     GRAY_SCALE,
@@ -38,6 +40,18 @@ enum Transformations {
     QUANTATION,
     SOLARIZATION,
     PSEUDO_COLORIZATION
+};
+
+enum Token {
+    LOWPASS,
+    HIGHPASS,
+    MEDIAN,
+    GAUSSIAN
+};
+
+struct FilterToken {
+    Token transform;
+    uint64_t param;
 };
 
 class ImageProcessor {
@@ -53,7 +67,8 @@ public:
                    Quantizer *quantizer,
                    LowPassFilter *lowpass_filter,
                    HighPassFilter *highpass_filter,
-                   MedianFilter *median_filter);
+                   MedianFilter *median_filter,
+                   GaussianFilter *gaussian_filter);
 
     QString _filepath;
     QImage _default_size_source_image;
@@ -62,6 +77,7 @@ public:
     QImage _filtered_image;
     bool source_status = false;
     bool _filtered_status = false;
+    bool _reset_mode = false;
     QImage _hystogram;
     const uint64_t _preview_label_size = 711;
     uint64_t prev_transformation;
@@ -79,11 +95,13 @@ public:
     LowPassFilter *_lowpass_filter;
     HighPassFilter *_highpass_filter;
     MedianFilter *_median_filter;
+    GaussianFilter *_gaussian_filter;
     std::vector <QImage> processing_list;
     std::vector <bool> processing_status;
+    std::vector<FilterToken> filtering_queue;
 
     void load_image(const QString& filepath);
-    void save_image(QString format);
+    void save_image();
     void calculate_hystogram();
     void apply_transformations(uint64_t position, bool force_apply);
     uint64_t prev_calculation(Transformations transformation);

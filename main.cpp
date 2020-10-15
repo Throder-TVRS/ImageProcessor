@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
     LowPassFilter lowpass_filter;
     HighPassFilter highpass_filter;
     MedianFilter median_filter;
+    GaussianFilter gaussian_filter;
     ImageProcessor processor(&converter,
                              &brightness_changer,
                              &negative_trashhold,
@@ -27,7 +28,8 @@ int main(int argc, char *argv[]) {
                              &quantizer,
                              &lowpass_filter,
                              &highpass_filter,
-                             &median_filter);
+                             &median_filter,
+                             &gaussian_filter);
     MainWindow w(nullptr, &processor);
     w.setFixedSize(w.size());
     w.setWindowTitle("Image processor");

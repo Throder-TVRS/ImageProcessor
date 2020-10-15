@@ -12,9 +12,9 @@ class ColorConverter {
 public:
     ColorConverter();
 
-    uint64_t _red_percentage = 33;
-    uint64_t _green_percentage = 33;
-    uint64_t _blue_percentage = 34;
+    uint64_t _red_percentage = 30;
+    uint64_t _green_percentage = 59;
+    uint64_t _blue_percentage = 11;
 
     void change_mixing_proportion(MIXER_TYPE mixer_type, int mixer_value);
     QImage gray_scale_image(const QImage& image);

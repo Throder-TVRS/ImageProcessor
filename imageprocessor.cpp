@@ -11,7 +11,8 @@ ImageProcessor::ImageProcessor(ColorConverter *color_converter,
                                Quantizer *quantizer,
                                LowPassFilter *lowpass_filter,
                                HighPassFilter *highpass_filter,
-                               MedianFilter *median_filter)
+                               MedianFilter *median_filter,
+                               GaussianFilter *gaussian_filter)
     : _color_converter(color_converter)
     , _brightness_changer(brightness_changer)
     , _negative_trashhold(negative_trashhold)
@@ -23,7 +24,8 @@ ImageProcessor::ImageProcessor(ColorConverter *color_converter,
     , _solarizer(solarizator)
     , _lowpass_filter(lowpass_filter)
     , _highpass_filter(highpass_filter)
-    , _median_filter(median_filter) {
+    , _median_filter(median_filter)
+    , _gaussian_filter(gaussian_filter) {
 
     _hystogram = QImage(256, 280, QImage::Format_RGB32);
     _transformations_amount = 20;
@@ -38,8 +40,72 @@ void ImageProcessor::load_image(const QString& filepath) {
     _source_image = scale_image(_source_image, _preview_label_size, _preview_label_size);
 }
 
-void ImageProcessor::save_image(QString format) {
+void ImageProcessor::save_image() {
+    QString fileName = QFileDialog::getSaveFileName();
+    if (fileName.isEmpty())
+        return;
+    QImage buf = _color_converter->gray_scale_image(_default_size_source_image);
+    if(!_brightness_changer->_null_change)
+        buf = _brightness_changer->change_brightness(buf);
+    if(_negative_trashhold->_isOn)
+        buf = _negative_trashhold->negativize(buf);
+    if(_contraster->_isOn)
+        buf = _contraster->change_contrast(buf);
+    if(_gammanizer->_isOn)
+        buf = _gammanizer->gammanize(buf);
+    if(_binorizer->_isOn)
+        buf = _binorizer->binaryze(buf);
+    if(_quantizer->_isOn)
+        buf = _quantizer->quantize(buf);
+    if(_solarizer->_isOn)
+        buf = _solarizer->solarize(buf);
+    if(_pseudo_colorizer->_isOn)
+        buf = _pseudo_colorizer->pseudo_colorize(buf);
 
+    uint64_t median_size = _median_filter->filter_size;
+    uint64_t gaussian_size = _gaussian_filter->filter_size;
+    for(uint64_t i = 0; i < filtering_queue.size(); i++) {
+        switch(filtering_queue[i].transform) {
+            case LOWPASS:
+                if(filtering_queue[i].param == 1) {
+                   LowPassFilter::Filter filter = _lowpass_filter->H1;
+                   buf = _lowpass_filter->apply_filter(buf, filter);
+                }
+                else if(filtering_queue[i].param == 2) {
+                    LowPassFilter::Filter filter = _lowpass_filter->H2;
+                    buf = _lowpass_filter->apply_filter(buf, filter);
+                }
+                else {
+                    LowPassFilter::Filter filter = _lowpass_filter->H3;
+                    buf = _lowpass_filter->apply_filter(buf, filter);
+                }
+                break;
+            case HIGHPASS:
+                if(filtering_queue[i].param == 1) {
+                   LowPassFilter::Filter filter = _lowpass_filter->H1;
+                   buf = _lowpass_filter->apply_filter(buf, filter);
+                }
+                else if(filtering_queue[i].param == 2) {
+                    LowPassFilter::Filter filter = _lowpass_filter->H2;
+                    buf = _lowpass_filter->apply_filter(buf, filter);
+                }
+                else {
+                    LowPassFilter::Filter filter = _lowpass_filter->H3;
+                    buf = _lowpass_filter->apply_filter(buf, filter);
+                }
+                break;
+            case MEDIAN:
+                _median_filter->filter_size = filtering_queue[i].param;
+                buf = _median_filter->apply_filter(buf);
+            case GAUSSIAN:
+                _gaussian_filter->filter_size = filtering_queue[i].param;
+                buf = _gaussian_filter->apply_filter(buf);
+        }
+    }
+    _median_filter->filter_size = median_size;
+    _gaussian_filter->filter_size = gaussian_size;
+
+    buf.save(fileName);
 }
 
 void ImageProcessor::calculate_hystogram() {

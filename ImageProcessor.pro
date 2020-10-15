@@ -21,6 +21,7 @@ SOURCES += \
     colorconverter.cpp \
     contraster.cpp \
     gammanizer.cpp \
+    gaussianfilter.cpp \
     highpassfilter.cpp \
     imageprocessor.cpp \
     lowpassfilter.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     colorconverter.h \
     contraster.h \
     gammanizer.h \
+    gaussianfilter.h \
     highpassfilter.h \
     imageprocessor.h \
     lowpassfilter.h \

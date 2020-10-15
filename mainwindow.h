@@ -82,6 +82,30 @@ private slots:
 
     void on_median_reset_clicked();
 
+    void on_gaussian_use_button_clicked();
+
+    void on_gaussian_reset_clicked();
+
+    void on_gaussian_size_box_valueChanged(int arg1);
+
+    void on_rgb_reset_clicked();
+
+    void on_bightness_reset_clicked();
+
+    void on_binarization_reset_clicked();
+
+    void on_negative_trashhold_reset_clicked();
+
+    void on_contrast_reset_clicked();
+
+    void on_gamma_reset_clicked();
+
+    void on_quantization_reset_clicked();
+
+    void on_pseudo_reset_clicked();
+
+    void on_save_image_button_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
