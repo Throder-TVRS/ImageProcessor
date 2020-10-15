@@ -244,12 +244,6 @@ void MainWindow::on_pseudo_box_stateChanged(int arg1) {
     update_image();
 }
 
-void MainWindow::on_gamma_box_2_valueChanged(double arg1) {
-    _processor->_gammanizer->gamma = arg1;
-    _processor->apply_transformations(Transformations::GAMMA, false);
-    update_image();
-}
-
 void MainWindow::on_quantization_slider_valueChanged(int value) {
     _processor->_quantizer->_quanta_amount = uint64_t(std::pow(2, value));
     ui->quantation_display->display(int(std::pow(2, value)));
@@ -583,7 +577,8 @@ void MainWindow::on_gamma_reset_clicked() {
     _processor->_gammanizer->_isOn = false;
     _processor->_gammanizer->gamma = 1;
     ui->gamma_box->setCheckState(Qt::CheckState::Unchecked);
-    ui->gamma_box_2->setValue(1);
+    ui->gamma_slider->setValue(0);
+    ui->gamma_display->display(0);
     if(!_processor->_reset_mode) {
         _processor->apply_transformations(Transformations::GAMMA, false);
         update_image();
@@ -630,4 +625,18 @@ void MainWindow::on_pseudo_reset_clicked() {
 
 void MainWindow::on_save_image_button_clicked() {
     _processor->save_image();
+}
+
+void MainWindow::on_gamma_slider_valueChanged(int value) {
+    _processor->_gammanizer->gamma = value;
+    if(value >= 0)
+        _processor->_gammanizer->gamma = std::pow(2, value);
+    else {
+        value *= -1;
+        _processor->_gammanizer->gamma = std::pow(2 , value);
+        _processor->_gammanizer->gamma = 1 / _processor->_gammanizer->gamma;
+    }
+    ui->gamma_display->display(_processor->_gammanizer->gamma);
+    _processor->apply_transformations(Transformations::GAMMA, false);
+    update_image();
 }

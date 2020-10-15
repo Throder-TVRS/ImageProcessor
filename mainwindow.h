@@ -44,67 +44,37 @@ private slots:
     void on_pseudo_q2_slider_valueChanged(int value);
     void on_pseudo_q3_slider_valueChanged(int value);
     void on_pseudo_box_stateChanged(int arg1);
-    void on_gamma_box_2_valueChanged(double arg1);
-
     void on_quantization_slider_valueChanged(int value);
-
     void on_quantation_box_stateChanged(int arg1);
-
     void on_pseudo_first_color_clicked();
-
     void on_pseudo_second_color_clicked();
-
     void on_pseudo_third_color_clicked();
-
     void on_pseudo_fourth_color_clicked();
-
     void on_solarization_box_stateChanged(int arg1);
-
     void on_lowpass_h1_button_clicked();
-
     void on_lowpass_h2_button_clicked();
-
     void on_lowpass_h3_button_clicked();
-
     void on_lowpass_reset_clicked();
-
     void on_highpass_h1_button_clicked();
-
     void on_highpass_h2_button_clicked();
-
     void on_highpass_h3_button_clicked();
-
     void on_highpass_reset_clicked();
-
     void on_mdian_use_button_clicked();
-
     void on_median_size_box_valueChanged(int arg1);
-
     void on_median_reset_clicked();
-
     void on_gaussian_use_button_clicked();
-
     void on_gaussian_reset_clicked();
-
     void on_gaussian_size_box_valueChanged(int arg1);
-
     void on_rgb_reset_clicked();
-
     void on_bightness_reset_clicked();
-
     void on_binarization_reset_clicked();
-
     void on_negative_trashhold_reset_clicked();
-
     void on_contrast_reset_clicked();
-
     void on_gamma_reset_clicked();
-
     void on_quantization_reset_clicked();
-
     void on_pseudo_reset_clicked();
-
     void on_save_image_button_clicked();
+    void on_gamma_slider_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
