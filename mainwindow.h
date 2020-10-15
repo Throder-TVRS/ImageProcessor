@@ -76,6 +76,12 @@ private slots:
 
     void on_highpass_reset_clicked();
 
+    void on_mdian_use_button_clicked();
+
+    void on_median_size_box_valueChanged(int arg1);
+
+    void on_median_reset_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

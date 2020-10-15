@@ -13,6 +13,7 @@
 #include "quantizer.h"
 #include "lowpassfilter.h"
 #include "highpassfilter.h"
+#include "medianfilter.h"
 
 class ColorConverter;
 class BrightnessChanger;
@@ -25,6 +26,7 @@ class Solarizer;
 class Quantizer;
 class LowPassFilter;
 class HighPassFilter;
+class MedianFilter;
 
 enum Transformations {
     GRAY_SCALE,
@@ -50,7 +52,8 @@ public:
                    Solarizer *solarizator,
                    Quantizer *quantizer,
                    LowPassFilter *lowpass_filter,
-                   HighPassFilter *highpass_filter);
+                   HighPassFilter *highpass_filter,
+                   MedianFilter *median_filter);
 
     QString _filepath;
     QImage _default_size_source_image;
@@ -75,6 +78,7 @@ public:
     Solarizer *_solarizer;
     LowPassFilter *_lowpass_filter;
     HighPassFilter *_highpass_filter;
+    MedianFilter *_median_filter;
     std::vector <QImage> processing_list;
     std::vector <bool> processing_status;
 

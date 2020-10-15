@@ -35,7 +35,7 @@ uint64_t use_H(const HighPassFilter::Filter& H, const QImage& image, uint64_t x,
     return std::max(int64_t(0), sum);
 }
 
-QImage HighPassFilter::apply_H(const QImage &image, HighPassFilter::Filter H) {
+QImage HighPassFilter::apply_filter(const QImage &image, HighPassFilter::Filter H) {
     QImage exp_image = expand_image(image, 3);
     QImage new_image = QImage(image.size(), QImage::Format_RGB32);
     uint64_t color;

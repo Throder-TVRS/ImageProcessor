@@ -15,8 +15,7 @@ public:
     Filter H2;
     Filter H3;
 
-    QImage apply_H(const QImage& image, Filter H);
-
+    QImage apply_filter(const QImage& image, Filter H);
 };
 
 #endif // LOWPASSFILTER_H

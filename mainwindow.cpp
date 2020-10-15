@@ -325,7 +325,7 @@ void MainWindow::on_lowpass_h1_button_clicked() {
         _processor->_filtered_status = true;
     }
     LowPassFilter::Filter filter = _processor->_lowpass_filter->H1;
-    _processor->_filtered_image = _processor->_lowpass_filter->apply_H(_processor->_filtered_image, filter);
+    _processor->_filtered_image = _processor->_lowpass_filter->apply_filter(_processor->_filtered_image, filter);
     _processor->calculate_hystogram();
     update_image();
 }
@@ -339,7 +339,7 @@ void MainWindow::on_lowpass_h2_button_clicked() {
         _processor->_filtered_status = true;
     }
     LowPassFilter::Filter filter = _processor->_lowpass_filter->H2;
-    _processor->_filtered_image = _processor->_lowpass_filter->apply_H(_processor->_filtered_image, filter);
+    _processor->_filtered_image = _processor->_lowpass_filter->apply_filter(_processor->_filtered_image, filter);
     _processor->calculate_hystogram();
     update_image();
 }
@@ -353,7 +353,7 @@ void MainWindow::on_lowpass_h3_button_clicked() {
         _processor->_filtered_status = true;
     }
     LowPassFilter::Filter filter = _processor->_lowpass_filter->H3;
-    _processor->_filtered_image = _processor->_lowpass_filter->apply_H(_processor->_filtered_image, filter);
+    _processor->_filtered_image = _processor->_lowpass_filter->apply_filter(_processor->_filtered_image, filter);
     _processor->calculate_hystogram();
     update_image();
 }
@@ -373,7 +373,7 @@ void MainWindow::on_highpass_h1_button_clicked() {
         _processor->_filtered_status = true;
     }
     HighPassFilter::Filter filter = _processor->_highpass_filter->H1;
-    _processor->_filtered_image = _processor->_highpass_filter->apply_H(_processor->_filtered_image, filter);
+    _processor->_filtered_image = _processor->_highpass_filter->apply_filter(_processor->_filtered_image, filter);
     _processor->calculate_hystogram();
     update_image();
 }
@@ -387,7 +387,7 @@ void MainWindow::on_highpass_h2_button_clicked() {
         _processor->_filtered_status = true;
     }
     HighPassFilter::Filter filter = _processor->_highpass_filter->H2;
-    _processor->_filtered_image = _processor->_highpass_filter->apply_H(_processor->_filtered_image, filter);
+    _processor->_filtered_image = _processor->_highpass_filter->apply_filter(_processor->_filtered_image, filter);
     _processor->calculate_hystogram();
     update_image();
 }
@@ -401,12 +401,35 @@ void MainWindow::on_highpass_h3_button_clicked() {
         _processor->_filtered_status = true;
     }
     HighPassFilter::Filter filter = _processor->_highpass_filter->H3;
-    _processor->_filtered_image = _processor->_highpass_filter->apply_H(_processor->_filtered_image, filter);
+    _processor->_filtered_image = _processor->_highpass_filter->apply_filter(_processor->_filtered_image, filter);
     _processor->calculate_hystogram();
     update_image();
 }
 
 void MainWindow::on_highpass_reset_clicked() {
+    _processor->_filtered_status = false;
+    _processor->calculate_hystogram();
+    update_image();
+}
+
+void MainWindow::on_mdian_use_button_clicked() {
+    if(_processor->_filepath.isEmpty() ||
+       _processor->source_status)
+        return;
+    if(!_processor->_filtered_status) {
+        _processor->_filtered_image = _processor->_processed_image;
+        _processor->_filtered_status = true;
+    }
+    _processor->_filtered_image = _processor->_median_filter->apply_filter(_processor->_filtered_image);
+    _processor->calculate_hystogram();
+    update_image();
+}
+
+void MainWindow::on_median_size_box_valueChanged(int arg1) {
+    _processor->_median_filter->filter_size = arg1;
+}
+
+void MainWindow::on_median_reset_clicked() {
     _processor->_filtered_status = false;
     _processor->calculate_hystogram();
     update_image();

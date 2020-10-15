@@ -26,6 +26,7 @@ SOURCES += \
     lowpassfilter.cpp \
     main.cpp \
     mainwindow.cpp \
+    medianfilter.cpp \
     negativetrashhold.cpp \
     pseudocolorizer.cpp \
     quantizer.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     imageprocessor.h \
     lowpassfilter.h \
     mainwindow.h \
+    medianfilter.h \
     negativetrashhold.h \
     pseudocolorizer.h \
     quantizer.h \

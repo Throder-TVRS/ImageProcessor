@@ -33,7 +33,7 @@ QImage expand_image(const QImage& image, int filter_size) {
         for(uint64_t i = 0; i < offset; i++)
             new_image.setPixel(x, i, qRgb(color, color, color));
         color = new_image.pixelColor(x, new_image.height() - 1 - offset).red();
-        for(uint64_t i = new_image.height() - offset; i < new_image.height(); i++)
+        for(uint64_t i = new_image.height() - offset; i < uint64_t(new_image.height()); i++)
             new_image.setPixel(x, i, qRgb(color, color, color));
     }
     for(uint64_t y = 0; y < uint64_t(new_image.height()); y++) {
@@ -41,7 +41,7 @@ QImage expand_image(const QImage& image, int filter_size) {
         for(uint64_t i = 0; i < offset; i++)
             new_image.setPixel(i, y, qRgb(color, color, color));
         color = new_image.pixelColor(new_image.width() - 1 - offset, y).red();
-        for(uint64_t i = new_image.width() - offset; i < new_image.width(); i++)
+        for(uint64_t i = new_image.width() - offset; i < uint64_t(new_image.width()); i++)
             new_image.setPixel(i, y, qRgb(color, color, color));
     }
     return new_image;

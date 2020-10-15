@@ -27,7 +27,7 @@ uint64_t use_H(const LowPassFilter::Filter& H, const QImage& image, uint64_t x, 
     return uint64_round(sum , H.denumerator, 127);
 }
 
-QImage LowPassFilter::apply_H(const QImage &image, Filter H) {
+QImage LowPassFilter::apply_filter(const QImage &image, Filter H) {
     QImage exp_image = expand_image(image, 3);
     QImage new_image = QImage(image.size(), QImage::Format_RGB32);
     uint64_t color;

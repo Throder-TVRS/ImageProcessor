@@ -10,7 +10,8 @@ ImageProcessor::ImageProcessor(ColorConverter *color_converter,
                                Solarizer *solarizator,
                                Quantizer *quantizer,
                                LowPassFilter *lowpass_filter,
-                               HighPassFilter *highpass_filter)
+                               HighPassFilter *highpass_filter,
+                               MedianFilter *median_filter)
     : _color_converter(color_converter)
     , _brightness_changer(brightness_changer)
     , _negative_trashhold(negative_trashhold)
@@ -21,7 +22,8 @@ ImageProcessor::ImageProcessor(ColorConverter *color_converter,
     , _pseudo_colorizer(pseudo_colorizer)
     , _solarizer(solarizator)
     , _lowpass_filter(lowpass_filter)
-    , _highpass_filter(highpass_filter) {
+    , _highpass_filter(highpass_filter)
+    , _median_filter(median_filter) {
 
     _hystogram = QImage(256, 280, QImage::Format_RGB32);
     _transformations_amount = 20;
