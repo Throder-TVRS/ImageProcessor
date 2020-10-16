@@ -12,7 +12,7 @@ QImage Solarizer::solarize(const QImage &image) {
     for(uint64_t x = 0; x < uint64_t(image.width()); x++)
         for(uint64_t y = 0; y < uint64_t(image.height()); y++) {
             color = image.pixelColor(x, y).red();
-            color *= uint64_t(color * a + b);
+            color = uint64_t(color * (color * a + b));
             color = std::min(color, uint64_t(255));
             new_image.setPixel(x, y, qRgb(color, color, color));
         }
