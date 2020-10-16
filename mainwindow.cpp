@@ -34,10 +34,8 @@ void MainWindow::update_image(const QImage& image) {
     if(_processor->_filepath.isEmpty() ||
       !_processor->source_status)
         return;
-    if(image == _processor->_filtered_image) {
-        std::cerr << "PREVIEW\n";
+    if(image == _processor->_filtered_image)
         ui->preview_label->setPixmap(QPixmap::fromImage(_processor->_filtered_image));
-    }
     else if(image != _processor->_source_image) {
         QImage scaled_processed_image = scale_image(image, ui->preview_label->width(), ui->preview_label->height());
         ui->preview_label->setPixmap(QPixmap::fromImage(scaled_processed_image));

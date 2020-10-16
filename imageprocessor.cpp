@@ -45,6 +45,7 @@ void ImageProcessor::save_image() {
     if (fileName.isEmpty())
         return;
     QImage buf = _color_converter->gray_scale_image(_default_size_source_image);
+    QImage buf2 = _color_converter->gray_scale_image(_default_size_source_image);
     if(!_brightness_changer->_null_change)
         buf = _brightness_changer->change_brightness(buf);
     if(_negative_trashhold->_isOn)
@@ -61,50 +62,38 @@ void ImageProcessor::save_image() {
         buf = _solarizer->solarize(buf);
     if(_pseudo_colorizer->_isOn)
         buf = _pseudo_colorizer->pseudo_colorize(buf);
-
     uint64_t median_size = _median_filter->filter_size;
     uint64_t gaussian_size = _gaussian_filter->filter_size;
     for(uint64_t i = 0; i < filtering_queue.size(); i++) {
         switch(filtering_queue[i].transform) {
             case LOWPASS:
-                if(filtering_queue[i].param == 1) {
-                   LowPassFilter::Filter filter = _lowpass_filter->H1;
-                   buf = _lowpass_filter->apply_filter(buf, filter);
-                }
-                else if(filtering_queue[i].param == 2) {
-                    LowPassFilter::Filter filter = _lowpass_filter->H2;
-                    buf = _lowpass_filter->apply_filter(buf, filter);
-                }
-                else {
-                    LowPassFilter::Filter filter = _lowpass_filter->H3;
-                    buf = _lowpass_filter->apply_filter(buf, filter);
-                }
+                if(filtering_queue[i].param == 1)
+                   buf = _lowpass_filter->apply_filter(buf, _lowpass_filter->H1);
+                else if(filtering_queue[i].param == 2)
+                    buf = _lowpass_filter->apply_filter(buf, _lowpass_filter->H2);
+                else
+                    buf = _lowpass_filter->apply_filter(buf, _lowpass_filter->H3);
                 break;
             case HIGHPASS:
-                if(filtering_queue[i].param == 1) {
-                   LowPassFilter::Filter filter = _lowpass_filter->H1;
-                   buf = _lowpass_filter->apply_filter(buf, filter);
-                }
-                else if(filtering_queue[i].param == 2) {
-                    LowPassFilter::Filter filter = _lowpass_filter->H2;
-                    buf = _lowpass_filter->apply_filter(buf, filter);
-                }
-                else {
-                    LowPassFilter::Filter filter = _lowpass_filter->H3;
-                    buf = _lowpass_filter->apply_filter(buf, filter);
-                }
+                if(filtering_queue[i].param == 1)
+                   buf = _highpass_filter->apply_filter(buf, _highpass_filter->H1);
+                else if(filtering_queue[i].param == 2)
+                    buf = _highpass_filter->apply_filter(buf, _highpass_filter->H2);
+                else
+                    buf = _highpass_filter->apply_filter(buf, _highpass_filter->H3);
                 break;
             case MEDIAN:
                 _median_filter->filter_size = filtering_queue[i].param;
                 buf = _median_filter->apply_filter(buf);
+                break;
             case GAUSSIAN:
                 _gaussian_filter->filter_size = filtering_queue[i].param;
                 buf = _gaussian_filter->apply_filter(buf);
+                break;
         }
     }
     _median_filter->filter_size = median_size;
     _gaussian_filter->filter_size = gaussian_size;
-
     buf.save(fileName);
 }
 
