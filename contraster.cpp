@@ -13,11 +13,11 @@ QImage Contraster::change_contrast(const QImage &image) {
         for(uint64_t x = 0; x < uint64_t(image.width()); x++) {
             for(uint64_t y = 0; y < uint64_t(image.height()); y++) {
                 color = image.pixelColor(x, y).red();
-                if(color < _q1 || _q1 >= _q2)
-                    color = 0;
-                else if(color > _q2)
-                    color = 255;
-                else
+//                if(color < _q1 || _q1 >= _q2)
+//                    color = 0;
+//                else if(color > _q2)
+//                    color = 255;
+//                else
                     color = _q1 + uint64_round(color * (_q2 - _q1), 255, 127);
                 new_image.setPixel(x, y, qRgb(color, color, color));
             }

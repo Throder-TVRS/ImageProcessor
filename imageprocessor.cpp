@@ -230,11 +230,12 @@ uint64_t ImageProcessor::prev_calculation(Transformations transformation) {
     if(transformation > prev_transformation)
         return prev_transformation;
     for(int i = transformation - 1; i >= 0; i--)
-        if(processing_status[i])
+        if(processing_status[i]) {
             if(i == Transformations::BINARIZATION && !_binorizer->_isOn)
                 return prev_calculation(Transformations(i));
             else
                 return uint64_t(i);
+        }
     return uint64_t(Transformations::GRAY_SCALE);
 }
 
